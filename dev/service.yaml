@@ -1,13 +1,13 @@
-#service.yaml 
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: hello-world-app-service
+  namespace: default
 spec:
+  type: ClusterIP  
   selector:
-    app: nginx
+    app: hello-world-app
   ports:
-    - protocol: TCP
-      port: 80  
+    - name: http
+      port: 80
       targetPort: 80
-  type: NodePort 
