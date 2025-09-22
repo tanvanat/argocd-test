@@ -3,6 +3,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-world-app
+  namespace: myapp
+  labels:
+    app: hello-world-app
 spec:
   replicas: 1  
   selector:
