@@ -1,1 +1,33 @@
-#deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todolist-app
+  namespace: todolist
+  labels:
+    app: todolist-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todolist-app
+  template:
+    metadata:
+      labels:
+        app: todolist-app
+    spec:
+      containers:
+      - name: todolist-app
+        image: tanvanat/todolist-app:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DB_HOST
+          value: "202.94.169.132"
+        - name: DB_USER
+          value: "root"
+        - name: DB_PASSWORD
+          value: "Tanvanat123446"
+        - name: DB_NAME
+          value: "todo_app"
+        - name: DB_PORT
+          value: "3307"
