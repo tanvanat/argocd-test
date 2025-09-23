@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: registry.nipa.cloud/front-test-1/task-api:1.0.1
+        image: registry.nipa.cloud/front-test-1/tasks-api:1.0.1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
