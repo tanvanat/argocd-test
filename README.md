@@ -1,3 +1,9 @@
+# ArgoCD UI for todolist app
+![App Diagram](./argoui-final.jpg)
+
+# ArgoCD UI for nginx app
+![App Diagram](./nginx-app.jpg)
+
 🚀 การทำงานของ Argo CD
 
 มี 2 วิธีหลักในการสร้างแอปใน Argo CD:
@@ -41,5 +47,6 @@ docker pull registry.nipa.cloud/front-test-1/my-app:1.0.1
 
 # สรุป
 เวลาเเก้โค้ดให้commit→pushเเล้วมันจะautoเชื่อมกับargocdเอง
+
 
 
