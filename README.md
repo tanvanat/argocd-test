@@ -39,3 +39,6 @@ docker pull registry.nipa.cloud/front-test-1/tasks-api:1.0.1
 # Pull frontend
 docker pull registry.nipa.cloud/front-test-1/my-app:1.0.1
 
+# สรุป
+เวลาเเก้โค้ดให้commit→pushเเล้วมันจะautoเชื่อมกับargocdเอง
+
