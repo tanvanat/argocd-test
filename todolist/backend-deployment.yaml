@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: todolist-app
+  name: todolist-backend
   namespace: todolist
   labels:
-    app: todolist-app
+    app: todolist-backend
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: todolist-app
+      app: todolist-backend
   template:
     metadata:
       labels:
-        app: todolist-app
+        app: todolist-backend
     spec:
       containers:
-      - name: todolist-app
-        image: tanvanat/todolist-app:latest
+      - name: backend
+        image: registry.nipa.cloud/front-test-1/task-api:latest
         ports:
         - containerPort: 3000
         env:
@@ -31,3 +31,4 @@ spec:
           value: "todo_app"
         - name: DB_PORT
           value: "3307"
+

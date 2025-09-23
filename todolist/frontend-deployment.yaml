@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todolist-frontend
+  namespace: todolist
+  labels:
+    app: todolist-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todolist-frontend
+  template:
+    metadata:
+      labels:
+        app: todolist-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: registry.nipa.cloud/front-test-1/my-app:latest
+        ports:
+        - containerPort: 80
+
