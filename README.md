@@ -4,11 +4,11 @@
 
 1. Declarative (ที่เราใช้)
 
-เราสร้างไฟล์ application/todolist-app.yaml ขึ้นใน Git
+เราสร้างไฟล์ application/application.yaml ขึ้นใน Git
 
 แล้ว apply เข้า cluster ด้วย:
 
-kubectl apply -f application/todolist-app.yaml
+kubectl apply -f application/application.yaml
 
 
 จากนั้น Argo CD จะดึง config และ deploy แอปโดยอัตโนมัติ
@@ -41,4 +41,5 @@ docker pull registry.nipa.cloud/front-test-1/my-app:1.0.1
 
 # สรุป
 เวลาเเก้โค้ดให้commit→pushเเล้วมันจะautoเชื่อมกับargocdเอง
+
 
