@@ -39,34 +39,3 @@ docker pull registry.nipa.cloud/front-test-1/tasks-api:1.0.1
 # Pull frontend
 docker pull registry.nipa.cloud/front-test-1/my-app:1.0.1
 
-🔒 ถ้า Pod ขึ้น Error: ImagePullBackOff หรือ ErrImagePull
-
-สาเหตุหลัก ๆ คือ K8s node ดึง image จาก registry ไม่ได้
-
-วิธีแก้:
-
-✅ แก้ imagePullPolicy เป็น IfNotPresent หรือ Never ถ้าใช้ local image
-
-✅ ตรวจสอบว่า image มีอยู่ในเครื่อง node:
-
-docker images
-
-
-✅ เช็กว่า Login เข้า registry ได้ถูกต้อง
-
-✅ วิธีใช้งานกับ Argo CD
-
-ติดตั้ง Argo CD บน cluster (ถ้ายังไม่ได้ติดตั้ง)
-
-Apply Application:
-
-kubectl apply -f application/todolist-app.yaml
-
-
-ไปหน้า Argo CD UI → แอป todolist-application ควรปรากฏ
-
-คลิก Sync (หรือรอ Auto Sync ถ้าตั้งไว้)
-
-ตรวจสอบ Pod ว่ารันสมบูรณ์:
-
-kubectl get pods -n todolist
