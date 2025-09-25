@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: registry.nipa.cloud/front-test-1/my-app:1.0.1
+        image: registry.nipa.cloud/front-test-1/my-app:1.0.2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
