@@ -3,18 +3,38 @@ kind: Application
 metadata:
   name: todolist-application
   namespace: argocd
+  annotations:
+    # บอก updater ว่ามี 2 รูป (key = ชื่อ container ใน Deployment)
+    argocd-image-updater.argoproj.io/image-list: |
+      frontend=registry.nipa.cloud/front-test-1/my-app
+      backend=registry.nipa.cloud/front-test-1/tasks-api
+    # กลยุทธ์อัปเดตตาม semver (จำกัดให้คง major=1)
+    argocd-image-updater.argoproj.io/frontend.update-strategy: semver
+    argocd-image-updater.argoproj.io/backend.update-strategy: semver
+    argocd-image-updater.argoproj.io/frontend.allow-tags: regexp:^1\.\d+\.\d+$
+    argocd-image-updater.argoproj.io/backend.allow-tags: regexp:^1\.\d+\.\d+$
+
+    # ให้เขียนกลับ Git (ไม่ใช่ patch ที่คลัสเตอร์)
+    argocd-image-updater.argoproj.io/write-back-method: git
+    # ชี้ branch และ path ของ repo manifests นี้
+    argocd-image-updater.argoproj.io/git-branch: main          # ปรับถ้าใช้สาขาอื่น
+    argocd-image-updater.argoproj.io/git-path: todolist        # โฟลเดอร์นี้ (ตามที่คุณอยู่)
+
+    # ถ้า registry เป็น private ให้ updater ใช้ secret นี้อ่านแท็ก
+    argocd-image-updater.argoproj.io/pull-secret: argocd/harbor-creds
 spec:
   project: default
   source:
-    repoURL: https://github.com/tanvanat/argocd-test.git
-    targetRevision: HEAD
-    path: todolist
+    repoURL: https://github.com/tanvanat/argocd-test.git   # repo ที่เก็บ manifests นี้ (ถ้าเป็น repo เดียวกับไฟล์นี้ ให้ใส่ของจริง)
+    targetRevision: HEAD             # ปรับตามจริง
+    path: todolist                   # ตรงกับโฟลเดอร์นี้
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: todolist
   syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
     automated:
-      selfHeal: true
       prune: true
+      selfHeal: true
+

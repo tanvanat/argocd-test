@@ -14,11 +14,13 @@ spec:
     metadata:
       labels:
         app: todolist-backend
+      annotations:
+        rollme: "{{ now | toDate | unixEpoch }}"
     spec:
       containers:
       - name: backend
-        image: registry.nipa.cloud/front-test-1/tasks-api:1.0.2
-        imagePullPolicy: IfNotPresent
+        image: registry.nipa.cloud/front-test-1/tasks-api:1.0.8
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
         env:

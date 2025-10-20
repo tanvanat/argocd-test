@@ -15,10 +15,12 @@ spec:
       labels:
         app: todolist-frontend
     spec:
+      imagePullSecrets:
+        - name: nipa-regcred
       containers:
-      - name: frontend
-        image: registry.nipa.cloud/front-test-1/my-app:1.0.2
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 80
+        - name: frontend
+          image: registry.nipa.cloud/front-test-1/my-app:1.0.8   # ← ใส่เลขล่าสุดเป็นจุดตั้งต้น
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000  # ถ้าเป็น Next.js/Node ใช้ 3000; ถ้า Nginx ใช้ 80
 
